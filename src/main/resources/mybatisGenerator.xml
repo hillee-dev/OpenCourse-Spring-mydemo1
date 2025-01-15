@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="test" defaultModelType="flat" targetRuntime="mybatis3simple">
+        <!-- 序列化pojo -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <commentGenerator>
+            <!--忽略注释-->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 不希望生成的注释中包含时间戳 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!-- 数据库的连接配置 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.20.18:3306/test?characterEncoding=utf8&amp;serverTimezone=GMT%2B8&amp;useSSL=false&amp;nullCatalogMeansCurrent=true"
+                        userId="root" password="!Qaz2wsx."/>
+        <!--默认false Java type resolver will always use java.math.BigDecimal if
+        the database column is of type DECIMAL or NUMERIC. -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- 实体类生成的位置 -->
+        <javaModelGenerator targetPackage="com.cangzhousc.mydemo1.model"
+                            targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+        <!-- xml位置 -->
+        <sqlMapGenerator targetPackage="com.cangzhousc.mydemo1.mapper"
+                         targetProject="src/main/java"/>
+        <!--        接口位置-->
+                        <javaClientGenerator targetPackage="com.cangzhousc.mydemo1.mapper"
+                                             targetProject="src/main/java" type="XMLMAPPER">
+                            <property name="enableSubPackages" value="true"/>
+                        </javaClientGenerator>
+        <!--        相关表的配置 -->
+        <table tableName="city" enableSelectByPrimaryKey="true"
+               enableUpdateByPrimaryKey="true"
+               enableDeleteByPrimaryKey="true">
+            <!--            generatedkey,设置生成主键，在insert中增加key。
+            identity:当设置为 true 时,该列会被标记为identity列，
+            并且 <selectKey> 元素会被插入在insert后面。 当设置为 false 时， <selectKey> 会插入到insert之前（通常是序列）-->
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+    </context>
+</generatorConfiguration>

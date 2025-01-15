@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cangzhousc.mydemo1.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.cangzhousc.mydemo1.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+
+  <select id="select" resultMap="BaseResultMap">
+    select * from user;
+  </select>
+</mapper>
