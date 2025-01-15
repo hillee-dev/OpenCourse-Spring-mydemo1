@@ -13,4 +13,5 @@ public interface CityMapper {
     List<City> selectAll();
 
     int updateByPrimaryKey(City record);
+    //
 }
