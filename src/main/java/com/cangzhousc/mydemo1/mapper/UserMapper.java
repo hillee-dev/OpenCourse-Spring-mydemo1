@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface UserMapper {
     List<User> select();
+    void insert(User user);
 }

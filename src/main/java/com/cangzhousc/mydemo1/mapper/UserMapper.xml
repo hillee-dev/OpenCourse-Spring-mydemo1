@@ -4,9 +4,16 @@
   <resultMap id="BaseResultMap" type="com.cangzhousc.mydemo1.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
   </resultMap>
 
   <select id="select" resultMap="BaseResultMap">
     select * from user;
   </select>
+  <insert id="insert" parameterType="com.cangzhousc.mydemo1.model.User">
+    insert into user(name, age, birthday, amount)
+    values (#{name}, #{age}, #{birthday}, #{amount});
+  </insert>
 </mapper>
